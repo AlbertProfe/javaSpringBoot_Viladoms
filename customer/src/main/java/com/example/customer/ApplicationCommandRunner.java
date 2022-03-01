@@ -30,7 +30,29 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		customerservice.save(customer2);
 		customerservice.save(customer3);
 		customerservice.save(customer4);
+		
+		logger.info("count: " + customerservice.count());
+		logger.info(customerservice.findAll());
+		logger.info("exists ['1']: " + customerservice.existsById("1"));
+		
+		
+		customerservice.findAndDeleteById("1");
+		
+		logger.info("count: " + customerservice.count());
+		logger.info(customerservice.findAll());
+		logger.info("exists ['1']: " + customerservice.existsById("1"));
+		
+		customerservice.save(new Customer("5", "Paul", "Mendez"));
+		
 
+		logger.info("count: " + customerservice.count());
+		logger.info(customerservice.findAll());
+		logger.info("exists ['1']: " + customerservice.existsById("1"));
+		logger.info("exists ['5']: " + customerservice.existsById("5"));
+		
+		customer2.setFirstName("Olga");
+		logger.info("count: " + customerservice.count());
+		customerservice.update("2", customer2);
 		logger.info(customerservice.findAll());
 
 	}

@@ -8,26 +8,27 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 
 	@Autowired
-	CustomerRepository customerrepository;
+	CustomerRepository customerRepository;
 
+	// crud basic operations
 	public Iterable<Customer> findAll() {
-		return customerrepository.findAll();
+		return customerRepository.findAll();
 	}
 
 	public Customer save(Customer customer) {
-		customerrepository.save(customer);
+		customerRepository.save(customer);
 
 		return customer;
 	}
 
-	public String findAnddeleteById(String id) {
+	public String findAndDeleteById(String id) {
 
 		String response = "";
-		Optional<Customer> customerFound = customerrepository.findById(id);
+		Optional<Customer> customerFound = customerRepository.findById(id);
 
 		if (customerFound.isPresent()) {
 
-			customerrepository.delete(customerFound.get());
+			customerRepository.delete(customerFound.get());
 			response += "customer deleted";
 		} else {
 
@@ -41,32 +42,55 @@ public class CustomerService {
 
 		// String response = "";
 
-		customerrepository.deleteById(id);
+		customerRepository.deleteById(id);
 
 	}
-	
-	public String update (String id, Customer customer) {
-		
-		String response = "";
-		
-		Optional<Customer> customerFound = customerrepository.findById(id);
-		
-		if (customerFound.isPresent()) {
-			
-			//customerFound.get()
-			
-			customerrepository.save(customerFound.get());
-			
-			response += "customer updated";
-		} else {
 
+	public String update(String id, Customer customer) {
+
+		String response = "";
+		Optional<Customer> customerFound = customerRepository.findById(id);
+
+		if (customerFound.isPresent()) {
+
+			customerFound.get().setFirstName(customer.getFirstName());
+			customerRepository.save(customerFound.get());
+			response += "customer updated";
+
+		} else {
 			response += "customer not found";
 		}
-		
-		
-		
+
 		return response;
-		
+
 	}
-	
+
+	// other options
+	public long count() {
+
+		long quantity = customerRepository.count();
+
+		return quantity;
+	}
+
+	public boolean existsById(String id) {
+
+		boolean isCustomer = customerRepository.existsById(id);
+
+		return isCustomer;
+	}
+
+	public void countByLastname(String lastname) {
+
+		// long quantity = customerRepository.countByLastname(lastname);
+
+		// return quantity;
+	}
+
+	public void deleteByLastname(String lastname) {
+
+		// customerRepository.deleteByLastname(lastname);
+
+	}
+
 }

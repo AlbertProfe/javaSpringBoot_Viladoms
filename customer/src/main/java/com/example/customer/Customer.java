@@ -30,8 +30,6 @@ public class Customer {
 		this.year = year;
 	}
 	
-	
-	
 
 	public String getId() {
 		return id;
