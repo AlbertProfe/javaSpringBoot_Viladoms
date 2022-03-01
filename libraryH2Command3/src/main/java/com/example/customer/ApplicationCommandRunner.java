@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class ApplicationCommandRunner implements CommandLineRunner {
 
@@ -13,6 +14,8 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	BookService bookService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -22,14 +25,25 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		User user1 = new User("1","Tom", "Jones");
 		User user2 = new User("2", "Silvia", "Eriksson");
-		User user3 = new User("3", "Anna", "Britzles");
+		User user3 = new User("3", "Anna", "Gates");
 		User user4 = new User("4", "Paul", "Gates");
 		
-
 		userService.save(user1);
 		userService.save(user2);
 		userService.save(user3);
 		userService.save(user4);
+		
+		Book book1 = new Book ("B001" ,"Anna Karenina", "Tolstoi", 562, 1896, "BR5GV-5-ERG5-6567");
+		Book book2 = new Book ("B002", "To the lighthouse", "V Wolf", 235, 1626, "56756-DFGRT-554" );
+		Book book3 = new Book ("B003", "I LOVE JAVA", "Anna", 2, 2023, "GWR-456" );
+		
+		bookService.save(book1);
+		bookService.save(book2);
+		bookService.save(book3);
+		
+		//logger.info("count: " + bookService.count());
+		logger.info(bookService.findAll());
+		
 		
 		logger.info("count: " + userService.count());
 		logger.info(userService.findAll());
@@ -54,7 +68,12 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		logger.info("count: " + userService.count());
 		userService.update("2", user2);
 		logger.info(userService.findAll());
+		
+		logger.info("count by lastname: " + userService.countByLastname("Gates"));
 
+		book1.setUser(user2);
+		
+		bookService.save(book1);
 	}
 
 }

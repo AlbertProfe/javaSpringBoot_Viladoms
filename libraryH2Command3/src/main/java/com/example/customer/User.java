@@ -12,6 +12,9 @@ public class User {
 	public String firstName;
 	public String lastName;
 	public int year;
+	
+	//@OneToMany
+	//public Book book;
 
 	public User() {
 	}

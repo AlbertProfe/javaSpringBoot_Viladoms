@@ -80,16 +80,16 @@ public class UserService {
 		return isCustomer;
 	}
 
-	public void countByLastname(String lastname) {
+	public Long countByLastname(String lastname) {
 
-		// long quantity = customerRepository.countByLastname(lastname);
+		long quantity = userRepository.countByLastName(lastname);
 
-		// return quantity;
+		return quantity;
 	}
 
 	public void deleteByLastname(String lastname) {
 
-		// customerRepository.deleteByLastname(lastname);
+		userRepository.deleteByLastName(lastname);
 
 	}
 
