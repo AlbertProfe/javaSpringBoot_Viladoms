@@ -48,6 +48,10 @@ public class User {
 	//to access books from user
 	public void addBook(Book book) {
 		this.books.add(book);
+		//we need to add this line cause one book CAN'T be in two users' array books at same time
+		//so when user is set in book object, we MUST check if this field user in book is empty or not
+		//if it is empty we go along if not we MUST remove this book from previous user array books.
+		if (book.getUser() != null) book.getUser().getBooks().remove(book);
 		book.setUser(this);
 	}
 

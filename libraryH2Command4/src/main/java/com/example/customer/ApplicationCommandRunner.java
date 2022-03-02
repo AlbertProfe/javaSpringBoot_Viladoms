@@ -53,6 +53,7 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		logger.info("toString user2 " + user2);
 		
 		logger.info("user1 get books " + user1.getBooks());
+		logger.info("user2 get books " + user2.getBooks());
 	}
 
 }
