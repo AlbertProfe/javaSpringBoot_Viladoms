@@ -19,7 +19,7 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		logger.info("Welcome to the runner from commandLineRunner");
+		logger.info("Welcome to the runner from commandLineRunner to test JPA mapping 1:n");
 
 		User user1 = new User("U001","Tom", "Jones", 1985);
 		User user2 = new User("U002", "Silvia", "Eriksson", 1923);
@@ -39,10 +39,20 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		userService.save(new User("U005", "Paul", "Mendez", 2006));
 		
-
+		//we add to arraylist books of user 
+		user1.addBook(book1);
+		user1.addBook(book2);
+		user1.addBook(book3);
+		user2.addBook(book3);
 		
+		//save to bd by JPA query crudrepository-service
+		userService.save(user1);
+		userService.save(user2);
 		
+		logger.info("toString user1 " + user1);
+		logger.info("toString user2 " + user2);
 		
+		logger.info("user1 get books " + user1.getBooks());
 	}
 
 }

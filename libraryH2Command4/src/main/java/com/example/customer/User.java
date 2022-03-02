@@ -18,6 +18,8 @@ public class User {
 	public String lastName;
 	public int year;
 	
+	//onetomany to create a bidirectional mapping from user to book
+	//we need mappedBy to access to user from books
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Book> books  = new ArrayList<Book>();
 
@@ -42,6 +44,8 @@ public class User {
 		return books;
 	}
 	
+	//very important method cause it allows
+	//to access books from user
 	public void addBook(Book book) {
 		this.books.add(book);
 		book.setUser(this);
@@ -81,7 +85,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format("Customer[id=%s, firstName='%s', lastName='%s']", id, firstName, lastName);
+		return String.format("User[id=%s, firstName='%s', lastName='%s']", id, firstName, lastName);
 	}
 
 }
