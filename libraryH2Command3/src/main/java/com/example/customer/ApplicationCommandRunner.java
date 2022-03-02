@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class ApplicationCommandRunner implements CommandLineRunner {
 
@@ -72,8 +71,21 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		logger.info("count by lastname: " + userService.countByLastname("Gates"));
 
 		book1.setUser(user2);
+		book2.setUser(user2);
+		book3.setUser(user2);
 		
 		bookService.save(book1);
+		bookService.save(book2);
+		bookService.save(book3);
+		
+		logger.info("toString book1: " + book1);
+		logger.info("toString book1: " + book1.getTitle());
+		logger.info("toString user2: " + user2);
+		
+		Book book4 = new Book ("B004", "I LOVE Js", "Anna", 2, 2023, "GWR-456" );
+		book4.setUser(user3);
+		bookService.save(book4);
+		
 	}
 
 }
