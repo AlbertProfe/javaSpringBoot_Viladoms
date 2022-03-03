@@ -19,7 +19,9 @@ public class Author {
 	private String country;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "AUTHOR_BOOK", joinColumns = { @JoinColumn(name = "FK_AUTHOR") }, inverseJoinColumns = {
+	@JoinTable(	name = "AUTHOR_BOOK",
+				joinColumns = { @JoinColumn(name = "FK_AUTHOR") },
+				inverseJoinColumns = {
 			@JoinColumn(name = "FK_BOOK") })
 	private List<Book> books = new ArrayList<Book>();
 
