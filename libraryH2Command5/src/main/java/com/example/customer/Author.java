@@ -37,13 +37,11 @@ public class Author {
 	public List<Book> getBooks() {
 		return books;
 	}
-	
+
 	public void addBook(Book book) {
 		this.books.add(book);
 		book.addAuthor(this);
 	}
-	
-	
 
 	public String getId() {
 		return id;

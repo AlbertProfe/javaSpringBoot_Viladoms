@@ -15,6 +15,8 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 	UserService userService;
 	@Autowired
 	BookService bookService;
+	@Autowired
+	AuthorService authorService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -32,10 +34,14 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		Book book1 = new Book ("B001" ,"Anna Karenina", "Tolstoi", 562, 1896, "BR5GV-5-ERG5-6567");
 		Book book2 = new Book ("B002", "To the lighthouse", "V Wolf", 235, 1626, "56756-DFGRT-554" );
-		Book book3 = new Book ("B003", "I LOVE JAVA", "Anna", 2, 2023, "GWR-456" );
+		Book book3 = new Book ("B003", "I LOVE JAVA", "Anna",502, 2023, "BE6YH6-GWR-456" );
+		Book book4 = new Book ("B004", "Orlando", "V Wolf", 232, 2023, "STHS-sdfgWR-456" );
+		Book book5 = new Book ("B005", "On romm of my own", "V Wolf", 220, 2023, "890OL42-GWR-456" );
 		bookService.save(book1);
 		bookService.save(book2);
 		bookService.save(book3);
+		bookService.save(book4);
+		bookService.save(book5);
 		
 		userService.save(new User("U005", "Paul", "Mendez", 2006));
 		
@@ -54,6 +60,27 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		logger.info("user1 get books " + user1.getBooks());
 		logger.info("user2 get books " + user2.getBooks());
+		
+		Author author1 = new Author("A001","Leo Tolstoi", "Russia");
+		Author author2 = new Author("A002","Virginia Wolf", "English");
+		Author author3 = new Author("A003","Dante Alighieri", "Italian");
+		
+		authorService.save(author1);
+		authorService.save(author2);
+		authorService.save(author3);
+		
+		author2.addBook(book2);
+		author2.addBook(book4);
+		author2.addBook(book5);
+		
+		authorService.save(author2);
+		logger.info("author2 get books " + author2.getBooks());
+		
+		author1.addBook(book1);
+		authorService.save(author1);
+		logger.info("author1 get books " + author1.getBooks());
+		
+		
 	}
 
 }
