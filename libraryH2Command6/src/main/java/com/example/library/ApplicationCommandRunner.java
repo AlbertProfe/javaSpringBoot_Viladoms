@@ -1,10 +1,18 @@
-package com.example.customer;
+package com.example.library;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import com.example.library.model.Author;
+import com.example.library.model.Book;
+import com.example.library.model.User;
+import com.example.library.service.AuthorService;
+import com.example.library.service.BookService;
+import com.example.library.service.BorrowService;
+import com.example.library.service.UserService;
 
 @Component
 public class ApplicationCommandRunner implements CommandLineRunner {
@@ -17,6 +25,8 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 	BookService bookService;
 	@Autowired
 	AuthorService authorService;
+	@Autowired
+	BorrowService borrowService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -45,6 +55,30 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		userService.save(new User("U005", "Paul", "Mendez", 2006));
 		
+		//save to bd by JPA query crudrepository-service
+		userService.save(user1);
+		userService.save(user2);
+		
+		logger.info("toString user1 " + user1);
+		logger.info("toString user2 " + user2);
+		
+		
+		Author author1 = new Author("A001","Leo Tolstoi", "Russia");
+		Author author2 = new Author("A002","Virginia Wolf", "English");
+		Author author3 = new Author("A003","Dante Alighieri", "Italian");
+		
+		authorService.save(author1);
+		authorService.save(author2);
+		authorService.save(author3);
+		
+		author2.addBook(book2);
+		author2.addBook(book4);
+		author2.addBook(book5);
+		
+		authorService.save(author2);
+		
+		author1.addBook(book1);
+		authorService.save(author1);
 		
 		
 		

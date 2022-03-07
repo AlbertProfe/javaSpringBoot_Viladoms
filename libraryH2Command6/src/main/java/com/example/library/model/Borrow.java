@@ -1,15 +1,17 @@
-package com.example.customer;
+package com.example.library.model;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Borrow {
 	
+	@Id
 	private String id;
 	private Date borrowDate;
 	private Date devolutionDate;

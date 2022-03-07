@@ -1,6 +1,9 @@
-package com.example.customer;
+package com.example.library.repository;
 
 import org.springframework.data.repository.CrudRepository;
+
+import com.example.library.model.Author;
+import com.example.library.model.User;
 
 public interface AuthorRepository extends CrudRepository<Author,String> {
 

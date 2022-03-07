@@ -1,4 +1,4 @@
-package com.example.customer;
+package com.example.library.model;
 
 import java.util.ArrayList;
 import java.util.List;
