@@ -1,13 +1,16 @@
 package com.example.library;
 
+
+import java.util.Calendar;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import com.example.library.model.Author;
 import com.example.library.model.Book;
+import com.example.library.model.Borrow;
 import com.example.library.model.User;
 import com.example.library.service.AuthorService;
 import com.example.library.service.BookService;
@@ -55,14 +58,7 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		userService.save(new User("U005", "Paul", "Mendez", 2006));
 		
-		//save to bd by JPA query crudrepository-service
-		userService.save(user1);
-		userService.save(user2);
-		
-		logger.info("toString user1 " + user1);
-		logger.info("toString user2 " + user2);
-		
-		
+	
 		Author author1 = new Author("A001","Leo Tolstoi", "Russia");
 		Author author2 = new Author("A002","Virginia Wolf", "English");
 		Author author3 = new Author("A003","Dante Alighieri", "Italian");
@@ -79,6 +75,20 @@ public class ApplicationCommandRunner implements CommandLineRunner {
 		
 		author1.addBook(book1);
 		authorService.save(author1);
+		
+		Calendar date1 = Calendar.getInstance();
+		date1.set(2022,1,1);
+		Calendar date2 = Calendar.getInstance();
+		date2.set(2022,1,16);
+		Calendar date3 = Calendar.getInstance();
+		date3.set(2022,6,3);
+		Calendar date4 = Calendar.getInstance();
+		date4.set(2022,6,18);
+		
+		
+		//String id, Date borrowDate, Date devolutionDate, String status, String type, int fee, Book book, User user
+		borrowService.save(new Borrow("Bo154", date1, date2, "borrowed" , "regular",  1, book1, user1));
+		borrowService.save(new Borrow("Bo1564", date3, date4, "borrowed" , "regular",  1, book1, user2));
 		
 		
 		

@@ -21,6 +21,12 @@ public class Book {
 	private int pages;
 	private int year;
 	private String ISBN;
+	
+	// toborrow, borrowed, lost, inbackoffice 
+	private String status;
+	//bestseller, oldbook, regularbook
+	private String type; 
+	
 
 	
 	@ManyToMany(mappedBy = "books", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
