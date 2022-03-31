@@ -16,9 +16,6 @@ public class AuthorService {
 
 	// crud basic operations
 	public Iterable<Author> findAll() {
-		
-		System.out.println(authorRepository.findAll());
-		
 		return authorRepository.findAll();
 	}
 
